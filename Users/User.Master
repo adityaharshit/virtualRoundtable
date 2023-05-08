@@ -1,0 +1,133 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="User.master.cs" Inherits="WebApplication3.User" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    />  
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/02dbdd2ee7.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="../TemplateFiles/js/jquery-3.4.1.min.js"></script>
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="../TemplateFiles/css/bootstrap.css" />
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="../assets/icon/themify-icons/themify-icons.css">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="../assets/icon/icofont/css/icofont.css">
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <!-- nice select  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
+  <!-- font awesome style -->
+  <link href="../TemplateFiles/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../Assets/styles.css" />
+    <link rel="stylesheet" href="../Assets/loginStyles.css" />
+
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="forum-container">
+
+        <div id="forum-nav">
+      <div class="forum-nav-logo">
+          <asp:ImageButton CausesValidation="false" Width="250px" ID="ImageButton1" runat="server" ImageUrl="../assets/images/logo1.png" OnClick="ImageButton1_Click" />
+        <%--<a href="index.aspx" style="text-decoration:none;"><img src="../assets/images/logo1.png" alt="" srcset="" /></a>--%>
+      </div>
+      <button class="forum-nav-res">
+        <i class="fa-solid fa-bars fa-3x forum-nav-fa"></i>
+      </button>
+      <div class="forum-nav-search">
+        <i class="fa-solid fa-magnifying-glass forum-nav-fa"></i>
+          <asp:TextBox ID="txtSearch" placeholder="Search" class="forum-nav-textbox" runat="server" OnTextChanged="txtSearch_TextChanged" AutoPostBack="true"></asp:TextBox>
+        <%--<input type="text" name="searchBox" placeholder="Search" id="" class="forum-nav-textbox"/>--%>
+      </div>
+      <div class="forum-nav-other-content">
+          <asp:LinkButton ID="lnbFaq" CausesValidation="false" runat="server" PostBackUrl="~/Users/faq.aspx" CssClass="forum-nav-fa" Font-Size="30px" Font-Bold="true">FAQ</asp:LinkButton>
+          <asp:LinkButton ID="lnbHome" CausesValidation="false" runat="server" PostBackUrl="~/Users/forum.aspx?id=1"><i class="fa-solid fa-house forum-nav-fa fa-2x"></i></asp:LinkButton>
+          <div class="dropdown">
+          <%--<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>--%>
+          <asp:LinkButton CssClass="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" ID="lnbNotification" CausesValidation="false" runat="server"><i class="fa-regular fa-bell forum-nav-fa fa-2x"></i></asp:LinkButton>
+            
+          
+          <ul class="dropdown-menu dropdown-menu-dark p-1" style="max-height:500px;width:500px;overflow-y:auto">
+              <asp:Repeater ID="rNotification" runat="server" OnItemCommand="rNotification_ItemCommand" OnItemDataBound="rNotification_ItemDataBound">
+                  <ItemTemplate>
+                      <img src='../<%# Eval("ProfilePic") %>' id="imgProfile" style="width:50px; height:50px;" class="img-thumbnail"/>
+                      <asp:LinkButton ID="lnbNotification" runat="server" CssClass="text-color-primary" CommandName="linkToPost" CommandArgument='<%# Eval("PostId") %>'></asp:LinkButton>
+                      <asp:HiddenField ID="hdnUsername" runat="server" Value='<%# Eval("Username") %>' />
+                      <asp:HiddenField ID="hdnAction" runat="server" Value='<%# Eval("Action") %>'/>
+                      <asp:HiddenField ID ="hdnPostId" runat="server" Value='<%# Eval("PostId") %>'/>
+                      <asp:HiddenField ID ="hdnDUId" runat="server" Value='<%# Eval("UId") %>'/>
+                      <asp:Label ID="lblDate" runat="server"><%# Convert.ToDateTime( Eval("ActionDoneOn")).ToString("dd/MM/yyyy") %></asp:Label>
+                      <hr class="dropdown-divider">
+                  </ItemTemplate>
+                  <FooterTemplate>
+
+                  </FooterTemplate>
+              </asp:Repeater>
+          </ul>
+        </div>
+          <asp:LinkButton ID="lnbProfile" CausesValidation="false" PostBackUrl="~/Users/Profile.aspx" runat="server"><i class="fa-solid fa-user forum-nav-fa fa-2x"></i></asp:LinkButton>
+        
+          
+        <div class="forum-nav-user">
+          <!-- <i class="fa-regular fa-user forum-nav-fa"></i> -->
+          <%--<img class="forum-nav-profile" src="../Assets/images/profile.png" />
+          <lable class="forum-name">Harshit</lable>
+          <i class="fa-solid fa-chevron-down forum-nav-fa"></i>--%>
+            <asp:LinkButton ID="lbLoginOrLogout" CausesValidation="false" OnClick="lbLoginOrLogout_Click" CssClass="btn btn-primary" runat="server">LinkButton</asp:LinkButton>
+        </div>
+      </div>
+    </div>
+        </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        <!-- Footer -->
+    <div id="footer">
+      <h1>The Virtual Roundtable</h1>
+      <div class="icons">
+        <i class="fa-brands fa-twitter"></i>
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-solid fa-envelope"></i>
+      </div>
+        <h5 class="copywright mt-3">© Harshit Aditya</h5>
+    </div>
+    </form>
+    <script src="../Assets/script.js"></script>
+    <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+    <script src="../Assets/js/jquery/jquery.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="../TemplateFiles/js/bootstrap.js"></script>
+  <!-- owl slider -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- isotope js -->
+  <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+  <!-- nice select -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+  <!-- custom js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <script src="../TemplateFiles/js/custom.js"></script>
+</body>
+</html>
+        

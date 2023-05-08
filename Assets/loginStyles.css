@@ -1,0 +1,141 @@
+*{
+    margin:0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing:border-box;
+}
+
+/*body{
+    background-image: url("images/login_background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}*/
+
+.login-container{
+    height:83vh;
+}
+
+.copywright{
+    letter-spacing:2px;
+}
+
+.login {
+    padding: 40px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #12151e;
+    border-radius: 5px;
+    color: #dbe1e6;
+    width: 30%;
+}
+
+
+.login-label-text{
+    margin: 20px 0;
+}
+
+.login-link{
+    text-decoration: none;
+    color: rgb(17, 89, 245);
+}
+
+.login-link:hover{
+    text-decoration: underline;
+}
+
+.login-text{
+    border-radius: 10px;
+    height: 35px;
+    margin-top: 10px;
+    outline: none;
+    padding: 5px 10px;
+    width: 100%;
+    background-color: #222635;
+    color: #dbe1e6;
+}
+
+.login-text:focus-within{
+    border: solid 2px #ff004f;
+}
+
+.login-remember-forgot{
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-button{
+    background-color: #FF0046;
+    border: 2px solid #FF0046;
+    border-radius: 5px;
+    color: #dbe1e6;
+    cursor: pointer;
+    margin-bottom: 30px ;
+    padding: 0.6rem;
+    width: 100%;
+    font-size: 1.5rem;
+    transition: .5s;
+}
+
+.login-button:hover{
+    background-color: transparent;
+}
+
+.registration-form{
+    display:flex;
+    flex-direction: column;
+}
+
+.registration{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    
+}
+
+.registration-heading{
+    align-self: center;
+    color: #ff004f;
+}
+
+.registration-text{
+    width: 100%;
+}
+
+.registration-input-fields{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap:50px
+}
+
+.registration-input-fields{
+    margin: 20px 0;
+}
+
+.registration-label-text{
+    flex-shrink: none;
+}
+
+.registration-signUp{
+    align-self: center;
+    background-color: #ff004f;
+    border: solid 3px #ff004f;
+    border-radius: 15px;
+    color: #dbe1e6;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    padding:0.2rem;
+    width: 25%;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.registration-signUp:hover{
+    background-color: transparent;
+    color: #ff004f;
+    border: solid 3px #ff004f;
+}
