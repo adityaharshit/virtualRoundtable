@@ -18,6 +18,7 @@ namespace WebApplication3.Users
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+            Response.Write("<script language = 'javascript'>window.alert('Login !');</script>");
             if (txtUsername.Text == "Admin" && txtPass.Text == "admin")
             {
                 Session["admin"] = "admin";
@@ -28,7 +29,7 @@ namespace WebApplication3.Users
             else
             {
 
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Golu\source\repos\WebApplication3\App_Data\Database1.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\virtualRoundtable\App_Data\Database1.mdf;Integrated Security=True");
                 cmd = con.CreateCommand();
                 cmd.CommandText = "Select * from Users where Username='" + txtUsername.Text + "' and Password='" + txtPass.Text + "'";
                 con.Open();

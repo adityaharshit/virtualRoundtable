@@ -34,7 +34,7 @@ namespace WebApplication3.Admin
         }
         protected void btnAddOrUpdate_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Golu\source\repos\WebApplication3\App_Data\Database1.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\virtualRoundtable\App_Data\Database1.mdf;Integrated Security=True");
             string actionName = string.Empty, imagePath = string.Empty, fileExtension = string.Empty, action = string.Empty;
             bool isValidToExecute = false;
             
@@ -112,7 +112,7 @@ namespace WebApplication3.Admin
         private void getSubTopic()
         {
             //throw new NotImplementedException();
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Golu\source\repos\WebApplication3\App_Data\Database1.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\virtualRoundtable\App_Data\Database1.mdf;Integrated Security=True");
             con.Open();
             cmd = con.CreateCommand();
             cmd.CommandText = "SELECT s.*,t.TName FROM SubTopic s inner join Topic t on t.TopicId= s.TopicId Order By s.CreatedDate Desc";
@@ -141,7 +141,7 @@ namespace WebApplication3.Admin
         protected void rProduct_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             lblMsg.Visible = false;
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Golu\source\repos\WebApplication3\App_Data\Database1.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\virtualRoundtable\App_Data\Database1.mdf;Integrated Security=True");
             cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
             if (e.CommandName == "edit")
